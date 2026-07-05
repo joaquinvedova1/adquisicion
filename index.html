@@ -2495,6 +2495,193 @@
         "Redactar como si hubo inspección real cuando fue modelización académica."
       ],
       "examen": "Puede venir una pregunta de procedimiento: qué cargar en CE3X, cómo interpretar la letra y cómo justificar medidas de mejora y retorno."
+    },
+    {
+      "id": "tp3-auditoria",
+      "titulo": "TP Auditoría energética · Método general CE3X/CERMA",
+      "temas": "Caso práctico tipo 3 · Auditoría / certificación energética",
+      "objetivo": "Resolver un caso práctico de auditoría energética con software: cargar datos generales, envolvente, cerramientos, puentes térmicos, huecos e instalaciones; obtener la calificación inicial; interpretar puntos débiles; proponer mejoras; analizar economía y emitir certificado/informe.",
+      "datos": [
+        "Tipo de edificio: residencial, pequeño terciario o gran terciario. Esto define dónde situarte en el software.",
+        "Datos generales: localización, zona climática, año/normativa, uso, superficie, plantas, altura, ventilación y ACS.",
+        "Datos de envolvente: muros, cubierta, suelo, transmitancias U, masas, orientaciones y superficies.",
+        "Datos de huecos: fachada asociada, dimensiones, vidrio, marco, porcentaje de marco, factor solar g, permeabilidad y absortividad.",
+        "Datos de puentes térmicos: tipo, cerramiento asociado, transmitancia lineal ψ y longitud L.",
+        "Datos de instalaciones: calefacción, ACS, refrigeración, iluminación, aire primario, combustibles, rendimientos, potencias, caudales y coberturas.",
+        "Datos económicos: precios de energía, inversión, vida útil, incremento anual y tipo de interés. Si no vienen, se declaran como supuestos.",
+        "Valores del TP concreto, como EcoCelulosa, son ejemplos aplicados: no se memorizan; se aprende la estructura."
+      ],
+      "formulas": [
+        "f-u",
+        "f-hueco",
+        "f-pt",
+        "f-rend",
+        "f-ilum",
+        "f-ahorro",
+        "f-amort",
+        "f-van",
+        "f-emisiones",
+        "f-energia-primaria"
+      ],
+      "procedimiento": [
+        "Elegir el tipo de edificio en el software: residencial, pequeño terciario o gran terciario. Oficinas suele ir como pequeño terciario; vivienda como residencial.",
+        "Cargar datos administrativos para identificar el expediente. Sirven para el informe, pero normalmente no cambian el cálculo energético.",
+        "Cargar datos generales: ubicación, zona climática, año/normativa, uso, superficie útil, altura, plantas, ventilación y ACS. Separar dato dado, dato calculado y supuesto.",
+        "Calcular superficies o volumen si el enunciado solo da dimensiones. Ejemplo general: A = largo × ancho × número de plantas; V = superficie × altura.",
+        "Entrar en envolvente térmica y cargar primero los cerramientos completos: muros por orientación, cubierta y suelo. No empezar por mejoras ni por resultados.",
+        "Cargar los muros completos por orientación con superficie y U. Si después se cargan huecos asociados, no descontar manualmente las ventanas salvo que el software o el enunciado lo pida.",
+        "Cargar cubierta completa y suelo completo según contacto: aire exterior, terreno o local no calefactado. Usar U y superficie correspondiente.",
+        "Asociar puentes térmicos a cada cerramiento: contorno de hueco, frente de forjado, pilares, encuentro fachada-cubierta, encuentro fachada-suelo, etc. Recordar que van con ψ y L.",
+        "Cargar huecos asociados a su fachada: dimensiones, tipo de vidrio, Uvidrio, U marco, porcentaje de marco, factor solar g, permeabilidad y absortividad.",
+        "Cargar instalaciones: calefacción, ACS, refrigeración, iluminación y aire primario. En cada una revisar combustible, rendimiento, potencia, caudal, cobertura y si hay recuperador.",
+        "Ejecutar la calificación inicial o resultado base. Anotar letra, emisiones, energía primaria, demandas y resultados parciales por servicio.",
+        "Interpretar el resultado: detectar qué pesa más o qué está peor. No proponer mejoras al azar; la mejora debe atacar el punto débil.",
+        "Crear conjuntos de medidas de mejora. Conviene separarlos para ver el impacto individual: iluminación, refrigeración, envolvente, renovables, recuperador, control, etc.",
+        "Comparar caso base contra cada mejora: letra, kgCO₂/m², energía primaria, demanda, emisiones por servicio y ahorro porcentual.",
+        "Hacer análisis económico: inversión, vida útil, precio de energía, ahorro anual, amortización simple y VAN. Aclarar si es teórico por falta de facturas o presupuestos.",
+        "Emitir el certificado/informe desde CE3X: revisar datos completos, ejecutar calificación, incluir medidas de mejora y análisis económico, generar el informe/certificado y anexos.",
+        "Cerrar con conclusión técnica: qué se modeló, qué resultado inicial tuvo, qué puntos débiles aparecieron, qué mejoras fueron más efectivas y si son viables."
+      ],
+      "bloques": [
+        {
+          "tipo": "clave",
+          "titulo": "Mentalidad correcta",
+          "items": [
+            "No estudiar el TP como una lista de valores fijos. EcoCelulosa fue un caso particular.",
+            "En examen te pueden cambiar edificio, ciudad, uso, superficies, equipos y mejoras.",
+            "Lo importante es el orden y la lógica: dónde cargo cada dato, qué calculo y qué interpreto."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "1 · Datos generales",
+          "items": [
+            "Qué me dan: ubicación, uso, dimensiones, plantas, altura, ventilación, ACS, año o normativa.",
+            "Qué calculo: superficie útil, volumen y superficies generales si no vienen ya dadas.",
+            "Qué puedo suponer: localidad equivalente, masa interna o dato faltante, siempre aclarado.",
+            "Dónde lo cargo: datos generales del edificio.",
+            "Qué significa: define clima, uso, escala del edificio y condiciones base de cálculo."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "2 · Envolvente térmica",
+          "items": [
+            "Qué me dan: U de muros, cubierta, suelo, orientaciones, alturas, longitudes y contactos.",
+            "Qué calculo: superficies A de cada cerramiento.",
+            "Dónde lo cargo: pestaña de envolvente térmica.",
+            "Orden correcto: primero muros, cubierta y suelo completos; después huecos y puentes térmicos asociados.",
+            "Qué significa: describe cómo el edificio intercambia calor con exterior, terreno o espacios no acondicionados."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "3 · Muros, cubierta y suelo completos",
+          "items": [
+            "Muros: cargar por orientación, superficie y U.",
+            "Cubierta: cargar superficie total y U según contacto con aire/exterior.",
+            "Suelo: cargar superficie total y U según contacto con terreno, exterior o LNC.",
+            "Si el software resta huecos al asociarlos, no descontarlos dos veces.",
+            "Notación: cerramientos superficiales se trabajan con U · A."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "4 · Puentes térmicos asociados",
+          "items": [
+            "Qué me dan: tipo de puente térmico, ψ y longitud L.",
+            "Dónde los cargo: asociados al cerramiento correspondiente.",
+            "Ejemplos: contorno de hueco, frente de forjado, pilares, encuentro fachada-cubierta, encuentro fachada-suelo.",
+            "Qué significa: pérdidas lineales adicionales por uniones o discontinuidades de aislamiento.",
+            "Notación: puente térmico = ψ · L, no U · A."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "5 · Huecos",
+          "items": [
+            "Qué me dan: ubicación por fachada, ancho, alto, vidrio, marco, porcentaje de marco, g, permeabilidad y absortividad.",
+            "Qué calculo: área del hueco si no viene dada.",
+            "Dónde lo cargo: dentro de la fachada o cerramiento asociado.",
+            "Qué significa: los huecos afectan pérdidas por U, ganancias solares por g e infiltraciones por permeabilidad.",
+            "No confundir U con g: U es transmisión térmica; g es entrada de energía solar."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "6 · Instalaciones",
+          "items": [
+            "Qué me dan: tipo de equipo, combustible, rendimiento, potencia, caudal, cobertura, iluminación y recuperador.",
+            "Dónde lo cargo: instalaciones del edificio.",
+            "Servicios típicos: calefacción, ACS, refrigeración, iluminación y aire primario.",
+            "Qué significa: las instalaciones convierten la demanda del edificio en consumo y emisiones.",
+            "No confundir potencia con consumo: kW es potencia; kWh es energía."
+          ]
+        },
+        {
+          "tipo": "ojo",
+          "titulo": "7 · Resultado inicial de la auditoría",
+          "items": [
+            "Qué obtengo: letra energética, kgCO₂/m², energía primaria, demandas y emisiones por servicio.",
+            "Qué miro: qué servicio está peor o pesa más.",
+            "Qué significa: el caso base es la foto inicial antes de mejorar.",
+            "No alcanza con decir la letra; hay que explicar qué indicador justifica esa letra."
+          ]
+        },
+        {
+          "tipo": "clave",
+          "titulo": "8 · Medidas de mejora",
+          "items": [
+            "Las mejoras salen del diagnóstico, no del azar.",
+            "Si pesa iluminación: LED o control de iluminación.",
+            "Si pesa refrigeración: equipo más eficiente, control solar, reducción de cargas internas.",
+            "Si pesa calefacción/ventilación: aislamiento, recuperador de calor, mejora de generador.",
+            "Si pesa ACS: equipos eficientes, renovables, mejora de acumulación o control."
+          ]
+        },
+        {
+          "tipo": "paso",
+          "titulo": "9 · Análisis económico",
+          "items": [
+            "Qué me dan: precios de energía, tipo de interés, incremento anual o vida útil.",
+            "Qué puedo estimar: inversión, coste unitario, mantenimiento si no aparece.",
+            "Qué calcula el software: amortización simple y VAN.",
+            "Qué significa: una mejora puede ser energética y también debe justificarse económicamente.",
+            "Si no hay facturas: aclarar que es un análisis teórico con supuestos."
+          ]
+        },
+        {
+          "tipo": "ojo",
+          "titulo": "10 · Emitir certificado en CE3X",
+          "items": [
+            "Revisar que estén completos datos administrativos, datos generales, envolvente e instalaciones.",
+            "Ejecutar la calificación energética del caso base.",
+            "Guardar/crear conjuntos de medidas de mejora y análisis económico.",
+            "Ir a la zona de Calificación Energética / Certificación / Informes y generar el certificado o informe final.",
+            "El certificado debe incluir caso base, etiqueta/calificación, indicadores, medidas de mejora, análisis económico y anexos si corresponde."
+          ]
+        }
+      ],
+      "resultados": [
+        "La estructura importa más que los valores de un TP concreto: los números cambian, el procedimiento se mantiene.",
+        "El resultado inicial sirve para detectar puntos débiles: demanda, consumo, emisiones o energía primaria.",
+        "Las mejoras deben estar conectadas con esos puntos débiles y compararse contra el caso base.",
+        "Un certificado/informe bien armado explica datos, supuestos, resultados, mejoras y viabilidad económica.",
+        "Ejemplo aplicado: en EcoCelulosa el caso base fue D y las mejoras trabajadas fueron LED, refrigeración eficiente y recuperador, pero esos valores son solo referencia de práctica."
+      ],
+      "errores": [
+        "Memorizar los valores de EcoCelulosa como si fueran siempre los del examen.",
+        "Saltar directo a medidas de mejora sin cargar bien el caso base.",
+        "No separar dato del enunciado, dato calculado y supuesto.",
+        "Cargar huecos dos veces o descontarlos manualmente y además asociarlos al cerramiento.",
+        "Confundir U superficial con ψ lineal.",
+        "No asociar puentes térmicos al cerramiento correspondiente.",
+        "Confundir potencia instalada con consumo anual.",
+        "Decir solo que mejora la letra sin explicar qué indicador baja.",
+        "Hacer análisis económico sin aclarar que los costes son estimados.",
+        "Emitir certificado/informe sin incluir medidas de mejora o sin revisar datos administrativos."
+      ],
+      "examen": "Puede venir un caso con resultados de CE3X o CERMA. La respuesta buena no memoriza EcoCelulosa: explica el flujo de carga, distingue datos dados/cálculos/supuestos, interpreta el caso base, propone mejoras coherentes, compara indicadores y cierra con certificado/análisis económico."
     }
   ],
   "cards": [
@@ -3403,7 +3590,11 @@ function formulasPage(){
  return `<h2 class="section-title">Banco de fórmulas</h2><div class="study-block clave"><b>Cómo estudiar esta sección:</b> no mires solo la ecuación. Mirá primero el uso, después cada símbolo y recién ahí el ejemplo.</div><div class="chips">${tags.map(x=>`<button class="chip ${state.tab===x?'active':''}" onclick="state.tab='${x}';renderMain()">${x}</button>`).join('')}</div>${DATA.formulas.filter(f=>state.tab==='claves'||state.tab==='todas'||!state.tab?true:(f.tema+' '+f.tp).toLowerCase().includes(state.tab.toLowerCase())).map(formulaCard).join('')}`;
 }
 function symbolsPage(){return `<h2 class="section-title">Diccionario de símbolos</h2><div class="study-block ojo"><b>Para no perderte:</b> muchas letras se parecen, pero no significan lo mismo. A_ext no es área exterior: es abertura de extracción.</div><table><thead><tr><th>Símbolo</th><th>Qué significa</th><th>Unidad</th><th>Dónde aparece</th></tr></thead><tbody>${DATA.symbols.map(s=>`<tr><td><b>${esc(s[0])}</b></td><td>${esc(s[1])}</td><td>${esc(s[2])}</td><td>${esc(s[3])}</td></tr>`).join('')}</tbody></table><h2 class="section-title">Unidades que más te pueden hacer errar</h2><table><thead><tr><th>Unidad</th><th>Qué mide</th><th>Conversión útil</th><th>Error típico</th></tr></thead><tbody>${DATA.units.map(u=>`<tr><td><b>${esc(u[0])}</b></td><td>${esc(u[1])}</td><td>${esc(u[2])}</td><td>${esc(u[3])}</td></tr>`).join('')}</tbody></table>`}
-function tpsPage(){return `<h2 class="section-title">TPs y casos aplicados</h2><div class="study-block clave">Estos tres TPs son la columna vertebral práctica. En examen probablemente cambien números, pero se mantiene la receta.</div>${DATA.tps.map(tp=>`<section class="card" id="${esc(tp.id)}"><span class="tag tp">${esc(tp.id.toUpperCase())}</span><span class="tag soft">${esc(tp.temas)}</span><h3>${esc(tp.titulo)}</h3><p><b>Objetivo:</b> ${esc(tp.objetivo)}</p><div class="grid2"><div class="study-block"><h4>Datos que miro primero</h4><ul>${tp.datos.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="study-block clave"><h4>Fórmulas/procedimientos</h4><ul>${tp.formulas.map(id=>{let f=DATA.formulas.find(ff=>ff.id===id);return `<li>${f?esc(f.nombre):esc(id)}</li>`}).join('')}</ul></div></div><div class="study-block paso"><h4>Receta paso a paso</h4><ol>${tp.procedimiento.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>${tp.resultados?`<div class="study-block"><h4>Resultados que conviene recordar</h4><ul>${tp.resultados.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}<div class="study-block err"><h4>Errores típicos</h4><ul>${tp.errores.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="study-block ojo"><b>Posible examen:</b> ${esc(tp.examen)}</div></section>`).join('')}<h2 class="section-title">Qué hago según lo que me pidan</h2><table><thead><tr><th>Si me piden...</th><th>Voy a...</th><th>Datos necesarios</th><th>No olvidar</th></tr></thead><tbody><tr><td>Demanda de calefacción</td><td>TP1</td><td>q, aberturas, U, A, ΔT</td><td>convertir l/s a m³/h si corresponde</td></tr><tr><td>K global / transmitancia</td><td>TP2</td><td>capas, U, A, ψ, L</td><td>U es superficial; ψ es lineal</td></tr><tr><td>CE3X / mejoras</td><td>TP3</td><td>datos generales, envolvente, instalaciones, costes</td><td>explicar por qué mejora la letra o el ahorro</td></tr></tbody></table>`}
+function renderBlockItem(x){
+ if(Array.isArray(x)) return `<li><b>${esc(x[0])}</b>: ${esc(x[1]||'')}</li>`;
+ return `<li>${esc(x)}</li>`;
+}
+function tpsPage(){return `<h2 class="section-title">TPs y casos aplicados</h2><div class="study-block clave">Estos TPs son la columna vertebral práctica. En examen probablemente cambien números, pero se mantiene la receta: leer datos, cargar modelo, calcular, interpretar y justificar.</div>${DATA.tps.map(tp=>`<section class="card" id="${esc(tp.id)}"><span class="tag tp">${esc(tp.id.toUpperCase())}</span><span class="tag soft">${esc(tp.temas)}</span><h3>${esc(tp.titulo)}</h3><p><b>Objetivo:</b> ${esc(tp.objetivo)}</p><div class="grid2"><div class="study-block"><h4>Datos que miro primero</h4><ul>${tp.datos.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="study-block clave"><h4>Fórmulas/procedimientos</h4><ul>${tp.formulas.map(id=>{let f=DATA.formulas.find(ff=>ff.id===id);return `<li>${f?esc(f.nombre):esc(id)}</li>`}).join('')}</ul></div></div>${tp.bloques?`<div class="study-block ojo"><h4>Cómo usar esta sección</h4><p>No memorices valores de un caso concreto. Usá estas tarjetas para saber qué te dan, qué calculás, qué suponés, dónde lo cargás y cómo lo interpretás.</p></div><div class="grid2">${tp.bloques.map(b=>`<div class="study-block ${esc(b.tipo||'')}"><h4>${esc(b.titulo)}</h4><ul>${(b.items||[]).map(renderBlockItem).join('')}</ul></div>`).join('')}</div>`:''}<div class="study-block paso"><h4>Receta paso a paso</h4><ol>${tp.procedimiento.map(x=>`<li>${esc(x)}</li>`).join('')}</ol></div>${tp.resultados?`<div class="study-block"><h4>Resultados que conviene recordar</h4><ul>${tp.resultados.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:''}<div class="study-block err"><h4>Errores típicos</h4><ul>${tp.errores.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="study-block ojo"><b>Posible examen:</b> ${esc(tp.examen)}</div></section>`).join('')}<h2 class="section-title">Qué hago según lo que me pidan</h2><table><thead><tr><th>Si me piden...</th><th>Voy a...</th><th>Datos necesarios</th><th>No olvidar</th></tr></thead><tbody><tr><td>Demanda de calefacción</td><td>TP1</td><td>q, aberturas, U, A, ΔT</td><td>convertir l/s a m³/h si corresponde</td></tr><tr><td>K global / transmitancia</td><td>TP2</td><td>capas, U, A, ψ, L</td><td>U es superficial; ψ es lineal</td></tr><tr><td>CE3X / mejoras</td><td>TP3</td><td>datos generales, envolvente, instalaciones, costes</td><td>explicar por qué mejora la letra o el ahorro</td></tr><tr><td>Auditoría energética con software</td><td>TP Auditoría</td><td>datos dados, cálculos, supuestos, caso base, mejoras y economía</td><td>seguir el orden: generales → envolvente → cerramientos → puentes → huecos → instalaciones → resultado</td></tr></tbody></table>`}
 function cardsPage(){const k=known();return `<h2 class="section-title">Datacards</h2><div class="flashgrid">${DATA.cards.map((c,i)=>`<div class="flash" onclick="this.classList.toggle('flip')"><div class="flashinner"><div class="front"><span class="tag">${esc(c[2])}</span><span class="tag tp">${esc(c[3])}</span><h3>${esc(c[0])}</h3><button class="known" onclick="event.stopPropagation();toggleKnown(${i})">${k.includes(i)?'✓ sabida':'marcar'}</button></div><div class="back"><p>${esc(c[1])}</p><button class="known" onclick="event.stopPropagation();toggleKnown(${i})">${k.includes(i)?'✓ sabida':'marcar'}</button></div></div></div>`).join('')}</div>`}
 function quizPage(){const q=DATA.quiz[state.quizIndex%DATA.quiz.length];return `<h2 class="section-title">Mini test</h2><div class="card"><span class="tag">${esc(q.tema)}</span><span class="tag tp">${esc(q.tp)}</span><h3>${esc(q.q)}</h3>${q.opts.map((o,i)=>`<button class="qopt" onclick="answer(${i})">${esc(o)}</button>`).join('')}<div id="qexp" class="study-block hidden"></div><div class="toolbar"><button class="btn" onclick="prevQ()">Anterior</button><button class="btn primary" onclick="nextQ()">Siguiente</button></div><p class="mini">Pregunta ${state.quizIndex+1} de ${DATA.quiz.length}</p></div>`}
 function normasPage(){return `<h2 class="section-title">Normas y software</h2><table><thead><tr><th>Tema</th><th>Norma / herramienta</th><th>Para qué sirve</th><th>Cómo recordarla</th></tr></thead><tbody>${DATA.normas.map(n=>`<tr><td>${esc(n[0])}</td><td><b>${esc(n[1])}</b></td><td>${esc(n[2])}</td><td>${esc(n[3])}</td></tr>`).join('')}</tbody></table><div class="study-block err"><b>Advertencia:</b> en los TPs se remarca no usar legislación derogada. Si no estás seguro, marcá duda/revisar.</div>`}
